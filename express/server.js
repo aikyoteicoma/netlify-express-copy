@@ -4,12 +4,23 @@ const path = require('path');
 const serverless = require('serverless-http');
 const app = express();
 const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const router = express.Router();
 router.get('/', (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<h1>Hello from Express.js!</h1>');
-  res.end();
+      // ファイルを読み込んだら、コールバック関数を実行する。
+    fs.readFile('./index.html', 'utf-8' , doReard );
+    
+    // コンテンツを表示する。
+    function doReard(err, data) {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        res.end();
+    }/*
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('<h1>Hello from Express.js!</h1>');
+    res.end();
+    */
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
