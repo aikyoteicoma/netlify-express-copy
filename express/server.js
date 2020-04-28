@@ -9,7 +9,7 @@ const fs = require('fs');
 const router = express.Router();
 router.get('/', (req, res) => {
       // ファイルを読み込んだら、コールバック関数を実行する。
-    fs.readFile('./index.html', 'utf-8' , doReard );
+    fs.readFileSync('./index.html', 'utf-8' , doReard );
     
     // コンテンツを表示する。
     function doReard(err, data) {
