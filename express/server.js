@@ -15,12 +15,13 @@ const displayFile = async (file) => {
   }
 };
 const data= displayFile(path.join(__dirname, 'index.html'));
-
 const router = express.Router();
 router.get('/', (req, res) => {
         res.writeHead(200, {'Content-Type': 'text/html'});
         console.log("typeof::",typeof data);
-        res.write(data);
+        var lines = data.toString();
+        console.log("typeof::",typeof lines);
+        res.write(lines);
         res.end();
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
