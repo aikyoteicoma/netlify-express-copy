@@ -6,10 +6,12 @@ const app = express();
 const bodyParser = require('body-parser');
 const fs = require('fs');
 
+
 const router = express.Router();
 router.get('/', (req, res) => {
     // ファイルを読み込んだら、コールバック関数を実行する。
-   var data= fs.readFileSync('./index.html', 'utf-8'  );
+  var data= fs.readFileSync(path.join(__dirname, './index.html', 'utf-8');
+   
     
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write("<p>aaa</p>");
