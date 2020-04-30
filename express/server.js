@@ -8,15 +8,14 @@ const fs = require('fs');
 
 const router = express.Router();
 router.get('/', (req, res) => {
-      // ファイルを読み込んだら、コールバック関数を実行する。
-    fs.readFileSync('./index.html', 'utf-8' , doReard );
+    // ファイルを読み込んだら、コールバック関数を実行する。
+   var data= fs.readFileSync('./index.html', 'utf-8'  );
     
-    // コンテンツを表示する。
-    function doReard(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write("<p>aaa</p>");
         res.write(data);
         res.end();
-    }/*
+  /*
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write('<h1>Hello from Express.js!</h1>');
     res.end();
