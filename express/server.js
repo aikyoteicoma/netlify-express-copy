@@ -21,7 +21,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
         res.writeHead(200, {'Content-Type': 'text/html'});
         console.log("typeof::",typeof data);
-        res.write(data);
+        var lines=data.toString();
+        res.write(lines);
         res.end();
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
