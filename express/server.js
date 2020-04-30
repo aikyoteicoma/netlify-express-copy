@@ -14,24 +14,13 @@ const displayFile = async (file) => {
     console.log(e.message);
   }
 };
-
-
-
+const data= displayFile(path.join(__dirname, 'index.html'));
 const router = express.Router();
 router.get('/', (req, res) => {
-    // ファイルを読み込んだら、コールバック関数を実行する。
-  var data= displayFile("./index.html");
-   
-    
         res.writeHead(200, {'Content-Type': 'text/html'});
         console.log("typeof::",typeof data);
         res.write(data);
         res.end();
-  /*
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write('<h1>Hello from Express.js!</h1>');
-    res.end();
-    */
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
