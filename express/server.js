@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const displayFile = async (file) => {
   try{
-    const buff = await fs.readFile(file, "utf-8");
+    const buff = await fs.readfilesync(file, "utf-8");
     console.log(buff);
   }
   catch(e){
