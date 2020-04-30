@@ -7,21 +7,21 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const displayFile = async (file) => {
   try{
-    const buff = await fs.readfilesync(file, "utf-8");
-    console.log(buff);
+    const buff = await fs.readFile(file, "utf-8");
+    return buff;
   }
   catch(e){
     console.log(e.message);
   }
 };
-const data= displayFile(path.join(__dirname, 'index.html'));
+
+
+const data= displayFile(path.join(__dirname, '../index.html'));
 const router = express.Router();
 router.get('/', (req, res) => {
         res.writeHead(200, {'Content-Type': 'text/html'});
         console.log("typeof::",typeof data);
-        var lines = data.toString();
-        console.log("typeof::",typeof lines);
-        res.write(lines);
+        res.write(data);
         res.end();
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
