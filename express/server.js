@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
    
     
         res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write("<p>aaa</p>");
+        console.log("typeof::",typeof data);
         res.write(data);
         res.end();
   /*
@@ -38,7 +38,7 @@ router.post('/', (req, res) => res.json({ postBody: req.body }));
 
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, './index.html')));
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app;
 module.exports.handler = serverless(app);
