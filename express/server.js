@@ -17,6 +17,13 @@ const displayFile = async (file) => {
 
 
 const data= displayFile(path.join(__dirname, './index.html'));
+
+Object.keys(data).forEach(function (key) {
+  console.log(key + "は" + obj[key] + "だ");
+});
+
+
+
 const router = express.Router();
 router.get('/', (req, res) => {
         res.writeHead(200, {'Content-Type': 'text/html'});
