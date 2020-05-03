@@ -1,4 +1,5 @@
 'use strict';
+const https = require('https');
 const express = require('express');
 const path = require('path');
 const serverless = require('serverless-http');
@@ -20,7 +21,7 @@ const data= displayFile(path.join(__dirname, './index.html'));
 
 
 const router = express.Router();
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
         res.writeHead(200, {'Content-Type': 'text/html'});
         console.log("typeof::",typeof data);
         var lines=data.toString();
@@ -33,10 +34,13 @@ router.get('/', (req, res) => {
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
-
+/*
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
-module.exports = app;
-module.exports.handler = serverless(app);
+*/
+
+var server = https.createServer(app);
+module.exports = server;
+//module.exports.handler = serverless(app);
